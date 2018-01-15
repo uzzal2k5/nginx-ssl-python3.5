@@ -1,0 +1,15 @@
+nginx_web:
+  build: .
+  container_name: nginx_web
+  hostname: nginx_web
+  # Volume Persistance
+  volumes:
+   - ./docker-web/var/www/html:/var/www/html:ro
+   - ./docker-web/var/log/nginx:/var/log/nginx
+  ports:
+   - 80:80/tcp
+   - 443:443/tcp
+  restart: always
+  # Run python manager for web at 8080 port default
+   #command: bash -c "cd /var/www/html/web && python manage.py runserver 0.0.0.0:8080"
+  #command: /usr/bin/python /var/www/html/manage.py runserver &
