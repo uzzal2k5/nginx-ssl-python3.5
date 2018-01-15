@@ -25,8 +25,8 @@ server {
 
     # Configure file root, proxy_pass or whatever you use here
 
-    ssl_certificate /etc/ssl/shuni_certs/ssl_web.crt;
-    ssl_certificate_key /etc/ssl/shuni_certs/ssl_web.key;
+    ssl_certificate /etc/ssl/ssl_certs/ssl_web.crt;
+    ssl_certificate_key /etc/ssl/ssl_certs/ssl_web.key;
 
     ssl     on;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
