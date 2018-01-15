@@ -22,7 +22,7 @@ RUN apt-get install -y openssl net-tools \
 
 RUN apt-get install -y build-essential libssl-dev libffi-dev python3-dev
 RUN apt-get install -y python3-pip
-RUN apt update && \
+RUN apt-get update && \
     apt-get install -y mysql-client libmysqlclient-dev
 
 # install uwsgi now because it takes a little while
@@ -36,9 +36,9 @@ RUN chmod a+x /requirements.txt
 RUN pip3 install -r /requirements.txt
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
-RUN mkdir /etc/ssl/shuni_certs
-COPY ssl/* /etc/ssl/shuni_certs/
-COPY config/shuni_web  /etc/nginx/sites-available/
+RUN mkdir /etc/ssl/ssl_certs
+COPY ssl/* /etc/ssl/ssl_certs/
+COPY config/ssl_web_config  /etc/nginx/sites-available/
 RUN ln -sf /etc/nginx/sites-available/ssl_web_config /etc/nginx/sites-enabled/ssl_web_config
 RUN ln -sf /usr/bin/python3    /usr/bin/python
 COPY config/.htaccess   /var/www/
