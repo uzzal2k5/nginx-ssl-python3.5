@@ -2,20 +2,25 @@
 Run your django web before hit your browser with http or https
 
 
-This is my first test based docker image, where httpd server installed into centos 7. As Dockerfile written like bellow,
+docker pull uzzal2k5/nginx-ssl-python3.5
+
+or
+Follow the git to build your image from git project
 
 
-docker run -dit -p 80:80 --name webserver uzzal2k5/httpd:latest /bin/bash
+Above command download docker container successfully .
+Run your container
 
 
-Above command run docker container successfully .
-Dockerfile:
 
-FROM centos
-MAINTAINER uzzaluzzal2k5@gmail.com , Mobile: +8801715519132
-RUN yum -y install httpd
-RUN echo "Follow me on LinkedIn ( https://www.linkedin.com/in/uzzal2k5 )" > /var/www/html/index.html
-EXPOSE 80
-CMD ["-D","FOREGROUND"]
-ENTRYPOINT ["/usr/sbin/httpd"]
+docker run -it -p 80:80 -p 443:443 --name nginx_web  \
+-v ./docker-web/var/www/html:/var/www/html:ro  \
+-v  ./docker-web/var/log/nginx:/var/log/nginx  \
+uzzal2k5/nginx-ssl-python3.5
+
+ After successfully run container enter into the container yousing exec command and run you django app using folloing command
+
+ python /var/www/html/nginx_web/manage.py runserver
+
+ Now you can hit your browser to  browse your web.
 
